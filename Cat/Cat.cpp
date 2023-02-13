@@ -50,53 +50,65 @@ int main(int argc, char** argv) {
 		floor_three = 2,
 		user_answer_floor;
 
-	print(color_first, color_second, color_three, floor_first, floor_second, floor_three);
+	bool flag;
 
-	std::cout << "Хотите поменять искомые дома? yes или no: ";
-	std::cin >> temp;
-	
-	if (temp == "yes") {
-		request(color_first, color_second, color_three, floor_first, floor_second, floor_three);
-	}
+	do {
+		print(color_first, color_second, color_three, floor_first, floor_second, floor_three);
 
-	user_request(user_answer_color, user_answer_floor);
+		std::cout << "Хотите поменять искомые дома? yes или no: ";
+		std::cin >> temp;
 
-	std::cout << std::endl;
-	std::cout << "Не обходимо осмотреть дома:" << std::endl;
-	
-	if (user_answer_color != "?" && user_answer_floor != -1) {
-		if (user_answer_color == color_first && user_answer_floor > 0) {
-			std::cout << 1 << std::endl;
+		if (temp == "yes") {
+			request(color_first, color_second, color_three, floor_first, floor_second, floor_three);
 		}
-		if (user_answer_color == color_second && user_answer_floor > 0) {
-			std::cout << 2 << std::endl;
+
+		user_request(user_answer_color, user_answer_floor);
+
+		std::cout << std::endl;
+		std::cout << "Необходимо осмотреть дома:" << std::endl;
+
+		if (user_answer_color != "?" && user_answer_floor != -1) {
+			if (user_answer_color == color_first && user_answer_floor == floor_first) {
+				std::cout << 1 << std::endl;
+			}
+			if (user_answer_color == color_second && user_answer_floor == floor_second) {
+				std::cout << 2 << std::endl;
+			}
+			if (user_answer_color == color_three && user_answer_floor == floor_three) {
+				std::cout << 3 << std::endl;
+			}
 		}
-		if (user_answer_color == color_three && user_answer_floor > 0) {
-			std::cout << 3 << std::endl;
-		}	
-	}
-	if (user_answer_color != "?" && user_answer_floor == -1) {
-		if (user_answer_color == color_first && user_answer_floor == -1) {
-			std::cout << 1 << std::endl;
+		if (user_answer_color != "?" && user_answer_floor == -1) {
+			if (user_answer_color == color_first && user_answer_floor == -1) {
+				std::cout << 1 << std::endl;
+			}
+			if (user_answer_color == color_second && user_answer_floor == -1) {
+				std::cout << 2 << std::endl;
+			}
+			if (user_answer_color == color_three && user_answer_floor == -1) {
+				std::cout << 3 << std::endl;
+			}
 		}
-		if (user_answer_color == color_second && user_answer_floor == -1) {
-			std::cout << 2 << std::endl;
+		if (user_answer_color == "?" && user_answer_floor != -1) {
+			if (user_answer_color == "?" && user_answer_floor == user_answer_floor) {
+				std::cout << 1 << std::endl;
+			}
+			if (user_answer_color == "?" && user_answer_floor == user_answer_floor) {
+				std::cout << 2 << std::endl;
+			}
+			if (user_answer_color == "?" && user_answer_floor == user_answer_floor) {
+				std::cout << 3 << std::endl;
+			}
 		}
-		if (user_answer_color == color_three && user_answer_floor == -1) {
-			std::cout << 3 << std::endl;
+		std::cout << "Хотите повторить? yes или no : ";
+		std::cin >> temp;
+		if (temp == "yes") {
+			flag = true;
 		}
-	}
-	if (user_answer_color == "?" && user_answer_floor != -1) {
-		if (user_answer_color == "?" && user_answer_floor == user_answer_floor) {
-			std::cout << 1 << std::endl;
+		else {
+			flag = false; 
 		}
-		if (user_answer_color == "?" && user_answer_floor == user_answer_floor) {
-			std::cout << 2 << std::endl;
-		}
-		if (user_answer_color == "?" && user_answer_floor == user_answer_floor) {
-			std::cout << 3 << std::endl;
-		}
-	}
+	} while (flag);
 
 	return 0;
 }
